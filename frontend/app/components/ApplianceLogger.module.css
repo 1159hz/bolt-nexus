@@ -1,0 +1,178 @@
+.logger {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  background: #f8f9fa;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.card h3 {
+  margin: 0 0 16px 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.select,
+.input {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.3s;
+}
+
+.select:focus,
+.input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.submitButton {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Appliance List */
+.applianceList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.applianceItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.applianceIcon {
+  font-size: 1.5rem;
+}
+
+.applianceName {
+  flex: 1;
+  color: #333;
+  font-weight: 500;
+}
+
+.applianceWattage {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Add Appliance */
+.addButton {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 2px dashed #667eea;
+  color: #667eea;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.addButton:hover {
+  background: #f0f0ff;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.addFormButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.confirmButton,
+.cancelButton {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.confirmButton {
+  background: #4caf50;
+  color: white;
+}
+
+.confirmButton:hover {
+  transform: translateY(-2px);
+}
+
+.cancelButton {
+  background: #e0e0e0;
+  color: #666;
+}
+
+.cancelButton:hover {
+  background: #d0d0d0;
+}

@@ -1,0 +1,121 @@
+================================================================================
+BOLT NEXUS - NETLIFY DEPLOYMENT GUIDE
+================================================================================
+
+STEP 1: PREPARE YOUR BACKEND
+-----------------------------
+Since Netlify is for frontend only, deploy your Flask backend separately:
+
+Option A: Railway (Recommended)
+1. Go to https://railway.app
+2. Click "Start a New Project"
+3. Connect your GitHub repository
+4. Select the "backend" folder
+5. Add environment variables:
+   - SUPABASE_URL=https://fgbcjlklkochkjpwaupr.supabase.co
+   - SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   - RAZORPAY_KEY_ID=your_key
+   - RAZORPAY_KEY_SECRET=your_secret
+6. Deploy and copy the deployed URL (e.g., https://your-app.railway.app)
+
+Option B: Render
+1. Go to https://render.com
+2. Create a new "Web Service"
+3. Connect repository
+4. Build command: pip install -r requirements.txt
+5. Start command: python main.py
+6. Add environment variables (same as above)
+
+Option C: PythonAnywhere
+1. Go to https://www.pythonanywhere.com
+2. Upload backend files
+3. Configure WSGI file
+4. Set environment variables
+
+
+STEP 2: DEPLOY FRONTEND TO NETLIFY
+-----------------------------------
+1. Go to https://netlify.com
+2. Click "Add new site" > "Import an existing project"
+3. Connect your Git repository
+4. Configure build settings:
+   - Base directory: frontend
+   - Build command: npm run build
+   - Publish directory: frontend/.next
+
+5. Add environment variables in Netlify:
+   Site Configuration > Environment Variables
+   
+   NEXT_PUBLIC_API_URL=https://your-backend-url.railway.app/api
+   
+   (Replace with your actual backend URL from Step 1)
+
+6. Click "Deploy site"
+
+
+STEP 3: VERIFY DEPLOYMENT
+--------------------------
+1. Wait for build to complete
+2. Visit your Netlify URL
+3. Test the registration form
+4. Check browser console for any errors
+5. Verify data is saving to Supabase
+
+
+ALTERNATIVE: DEPLOY EVERYTHING TO VERCEL
+-----------------------------------------
+If you want frontend + serverless backend together:
+
+1. Go to https://vercel.com
+2. Import repository
+3. Framework: Next.js
+4. Root directory: frontend
+5. Add environment variables:
+   - SUPABASE_URL
+   - SUPABASE_KEY
+   - NEXT_PUBLIC_API_URL
+6. Convert Flask routes to Vercel serverless functions
+   (More complex - requires code changes)
+
+
+BACKEND URLs FOR DIFFERENT HOSTS:
+----------------------------------
+Railway:     https://[app-name].railway.app/api
+Render:      https://[app-name].onrender.com/api
+Heroku:      https://[app-name].herokuapp.com/api
+Fly.io:      https://[app-name].fly.dev/api
+
+
+TROUBLESHOOTING:
+----------------
+Issue: "Failed to fetch" errors
+Fix: Make sure NEXT_PUBLIC_API_URL is set correctly in Netlify
+
+Issue: CORS errors
+Fix: Backend already has CORS enabled. Check backend logs.
+
+Issue: Build fails
+Fix: Check Node version (should be 18+) in netlify.toml
+
+Issue: 404 on refresh
+Fix: Already handled in netlify.toml redirects
+
+Issue: Database connection fails
+Fix: Verify Supabase environment variables in backend host
+
+
+CUSTOM DOMAIN (Optional):
+--------------------------
+1. In Netlify: Domain settings > Add custom domain
+2. Update DNS records at your domain provider
+3. Netlify provides SSL certificate automatically
+
+
+COST ESTIMATE:
+--------------
+Netlify:        FREE (100GB bandwidth/month)
+Railway:        FREE tier available (500 hours/month)
+Supabase:       FREE tier (500MB database, 2GB bandwidth)
+Total:          $0 for MVP usage
+
+================================================================================

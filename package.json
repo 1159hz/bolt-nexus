@@ -1,0 +1,14 @@
+{
+  "name": "bolt-nexus",
+  "version": "1.0.0",
+  "description": "Smart Appliance Health Platform",
+  "scripts": {
+    "install": "cd frontend && npm install",
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start"
+  },
+  "keywords": ["appliance", "maintenance", "energy", "india"],
+  "author": "Bolt Nexus",
+  "license": "MIT"
+}

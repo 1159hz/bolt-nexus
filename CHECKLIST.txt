@@ -1,0 +1,122 @@
+================================================================================
+                         DEPLOYMENT CHECKLIST
+================================================================================
+
+STEP-BY-STEP CHECKLIST - Follow in order!
+------------------------------------------
+
+[ ] STEP 1: Install Git
+    → Download: https://git-scm.com/download/win
+    → Run installer, keep clicking Next
+    → Restart your computer after installation
+
+[ ] STEP 2: Create GitHub Account
+    → Go to: https://github.com
+    → Sign up with your email
+    → Verify email
+
+[ ] STEP 3: Setup Git Locally
+    → Double-click: setup-github.bat
+    → Enter your name
+    → Enter your email
+    → Wait for "SETUP COMPLETE!"
+
+[ ] STEP 4: Create GitHub Repository
+    → Log into https://github.com
+    → Click "+" (top right) → "New repository"
+    → Name: bolt-nexus
+    → DO NOT add README
+    → Click "Create repository"
+
+[ ] STEP 5: Copy Repository URL
+    → On the new page, find:
+      https://github.com/YOUR-USERNAME/bolt-nexus.git
+    → Click the copy button (📋)
+
+[ ] STEP 6: Push Code to GitHub
+    → Double-click: push-to-github.bat
+    → Paste the URL you copied
+    → Press Enter
+    → Wait for "SUCCESS!"
+    → Verify at: https://github.com/YOUR-USERNAME/bolt-nexus
+
+[ ] STEP 7: Deploy Backend to Railway
+    → Go to: https://railway.app
+    → Sign up with GitHub
+    → Click "New Project" → "Deploy from GitHub repo"
+    → Select "bolt-nexus"
+    → Select "backend" folder
+    → Add environment variables:
+      • SUPABASE_URL=https://fgbcjlklkochkjpwaupr.supabase.co
+      • SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnYmNqbGtsa29jaGtqcHdhdXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMDkzNTQsImV4cCI6MjA3NzU4NTM1NH0.CXuzIDdZbiVSneXEqO17PEmnobiU5t_PyK68oIu1i44
+    → Click "Deploy"
+    → Copy the deployed URL (e.g., https://bolt-nexus-production.up.railway.app)
+
+[ ] STEP 8: Deploy Frontend to Netlify
+    → Go to: https://netlify.com
+    → Sign up with GitHub
+    → Click "Add new site" → "Import an existing project"
+    → Choose "GitHub"
+    → Select "bolt-nexus"
+    → Configure:
+      • Base directory: frontend
+      • Build command: npm run build
+      • Publish directory: frontend/.next
+    → Add environment variable:
+      • NEXT_PUBLIC_API_URL = [Your Railway URL]/api
+        Example: https://bolt-nexus-production.up.railway.app/api
+    → Click "Deploy site"
+
+[ ] STEP 9: Test Your Live Website
+    → Wait for build to finish (2-3 minutes)
+    → Click on the Netlify URL (e.g., https://bolt-nexus-abc123.netlify.app)
+    → Test the registration form
+    → Check if data saves to Supabase
+
+[ ] STEP 10: Set Up Custom Domain (Optional)
+    → In Netlify: Domain settings → Add custom domain
+    → Follow DNS instructions
+    → SSL certificate is automatic!
+
+
+QUICK REFERENCE:
+----------------
+GitHub repo: https://github.com/YOUR-USERNAME/bolt-nexus
+Railway backend: https://railway.app/dashboard
+Netlify frontend: https://app.netlify.com
+Supabase database: https://app.supabase.com
+
+
+BATCH FILES YOU'LL USE:
+-----------------------
+setup-github.bat      - First time Git setup
+push-to-github.bat    - Upload code to GitHub (first time)
+update-github.bat     - Update code on GitHub (after changes)
+
+
+NEED HELP?
+----------
+Read detailed guides:
+• GITHUB-GUIDE.txt - Complete GitHub tutorial
+• DEPLOY.txt - Deployment instructions
+
+
+COMMON ISSUES:
+--------------
+Issue: Git not found
+Fix: Install Git from https://git-scm.com/download/win
+
+Issue: Permission denied
+Fix: Use GitHub Desktop instead (https://desktop.github.com)
+
+Issue: Build fails on Netlify
+Fix: Check that base directory is set to "frontend"
+
+Issue: Backend not connecting
+Fix: Verify NEXT_PUBLIC_API_URL in Netlify environment variables
+
+================================================================================
+
+ESTIMATED TIME TO COMPLETE ALL STEPS: 30-45 minutes
+
+================================================================================

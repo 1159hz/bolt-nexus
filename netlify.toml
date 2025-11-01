@@ -1,0 +1,38 @@
+# Netlify Configuration for Bolt Nexus
+
+[build]
+  # Build command for Next.js
+  command = "cd frontend && npm run build"
+  
+  # Directory to publish (Next.js output)
+  publish = "frontend/.next"
+  
+  # Base directory
+  base = "/"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+  
+  # Next.js specific
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Redirect rules
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

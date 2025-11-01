@@ -1,0 +1,11 @@
+# Flask - Web framework
+flask==3.0.0
+
+# Flask-CORS - Handle Cross-Origin requests
+flask-cors==4.0.0
+
+# Supabase - Python client for Supabase database
+supabase==2.0.3
+
+# Python-dotenv - Load environment variables from .env file
+python-dotenv==1.0.0

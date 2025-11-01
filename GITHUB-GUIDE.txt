@@ -1,0 +1,196 @@
+================================================================================
+                    COMPLETE BEGINNER'S GUIDE TO GITHUB
+================================================================================
+
+PART 1: INSTALL GIT (One-time setup)
+-------------------------------------
+
+1. Download Git for Windows:
+   → Go to: https://git-scm.com/download/win
+   → Click "Click here to download"
+   → Run the installer (GitSetup.exe)
+   → Keep clicking "Next" (default options are fine)
+   → Click "Install"
+   → Click "Finish"
+
+2. Verify Git is installed:
+   → Press Windows key
+   → Type "cmd"
+   → Press Enter
+   → Type: git --version
+   → You should see: git version 2.x.x
+
+
+PART 2: CREATE GITHUB ACCOUNT (One-time setup)
+-----------------------------------------------
+
+1. Go to: https://github.com
+2. Click "Sign up" (top right)
+3. Enter your email
+4. Create a password
+5. Choose a username (e.g., jairus-dev)
+6. Verify you're human
+7. Click "Create account"
+8. Verify your email address
+
+
+PART 3: UPLOAD YOUR PROJECT TO GITHUB
+--------------------------------------
+
+METHOD 1: Using Batch Files (EASIEST)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Step 1: Setup Git locally
+   → Double-click: setup-github.bat
+   → Enter your name when asked
+   → Enter your email (same as GitHub)
+   → Wait for "SETUP COMPLETE!"
+
+Step 2: Create repository on GitHub
+   → Go to: https://github.com
+   → Log in
+   → Click the "+" icon (top right corner)
+   → Click "New repository"
+   → Repository name: bolt-nexus
+   → Description: Smart Appliance Health Platform
+   → Keep it PUBLIC (or choose Private)
+   → DO NOT check "Add a README file"
+   → DO NOT choose a license
+   → Click "Create repository"
+
+Step 3: Copy your repository URL
+   → You'll see a page with instructions
+   → Look for: https://github.com/YOUR-USERNAME/bolt-nexus.git
+   → Click the copy icon next to it
+   → (It looks like two overlapping squares)
+
+Step 4: Push code to GitHub
+   → Double-click: push-to-github.bat
+   → Paste your repository URL (right-click → Paste)
+   → Press Enter
+   → Wait for "SUCCESS!"
+
+Step 5: Verify upload
+   → Go to: https://github.com/YOUR-USERNAME/bolt-nexus
+   → You should see all your files!
+
+
+METHOD 2: Using GitHub Desktop (EASIER FOR FUTURE UPDATES)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Step 1: Install GitHub Desktop
+   → Go to: https://desktop.github.com
+   → Click "Download for Windows"
+   → Run the installer
+   → Sign in with your GitHub account
+
+Step 2: Add your project
+   → In GitHub Desktop, click "File" > "Add local repository"
+   → Click "Choose..."
+   → Navigate to: d:\Jairus\Work\test
+   → Click "Add repository"
+
+Step 3: Publish to GitHub
+   → Click "Publish repository" (top right)
+   → Name: bolt-nexus
+   → Description: Smart Appliance Health Platform
+   → Uncheck "Keep this code private" (or keep checked for private)
+   → Click "Publish repository"
+
+Step 4: Done!
+   → Your code is now on GitHub
+   → Any future changes: just click "Commit to main" then "Push origin"
+
+
+PART 4: MAKING UPDATES (AFTER INITIAL UPLOAD)
+----------------------------------------------
+
+When you make changes to your code:
+
+Using Batch File:
+   1. Save your changes
+   2. Double-click: update-github.bat (I'll create this)
+   3. Enter commit message (e.g., "Added new feature")
+   4. Done!
+
+Using GitHub Desktop:
+   1. Save your changes
+   2. Open GitHub Desktop
+   3. You'll see changed files on the left
+   4. Enter commit message in bottom left
+   5. Click "Commit to main"
+   6. Click "Push origin"
+
+
+PART 5: DEPLOY TO NETLIFY (AFTER GITHUB UPLOAD)
+------------------------------------------------
+
+Step 1: Create Netlify account
+   → Go to: https://netlify.com
+   → Click "Sign up"
+   → Choose "Sign up with GitHub"
+   → Authorize Netlify
+
+Step 2: Deploy your site
+   → Click "Add new site"
+   → Click "Import an existing project"
+   → Click "GitHub"
+   → Find "bolt-nexus" in the list
+   → Click on it
+
+Step 3: Configure build
+   → Base directory: frontend
+   → Build command: npm run build
+   → Publish directory: frontend/.next
+   → Click "Show advanced"
+   → Click "New variable"
+   → Key: NEXT_PUBLIC_API_URL
+   → Value: http://localhost:5000/api (change after backend is deployed)
+   → Click "Deploy site"
+
+Step 4: Wait for build
+   → Watch the deploy log
+   → When you see "Site is live", click the URL
+   → Your site is online!
+
+
+TROUBLESHOOTING:
+----------------
+
+Problem: "Git is not recognized as an internal or external command"
+Solution: Install Git (see PART 1)
+
+Problem: "Permission denied" when pushing
+Solution: 
+   1. Go to https://github.com/settings/tokens
+   2. Click "Generate new token (classic)"
+   3. Select "repo" scope
+   4. Click "Generate token"
+   5. Copy the token
+   6. Use token as password when Git asks
+
+Problem: "Repository not found"
+Solution: Double-check the repository URL you copied
+
+Problem: "Updates are rejected"
+Solution: Run: git pull origin main
+          Then try pushing again
+
+
+COMMON GITHUB TERMS:
+--------------------
+Repository (Repo): Your project folder on GitHub
+Commit: Saving a snapshot of your changes
+Push: Uploading commits to GitHub
+Pull: Downloading changes from GitHub
+Branch: A separate version of your code (we use "main")
+Clone: Downloading a repo to your computer
+
+
+HELPFUL LINKS:
+--------------
+Your repositories: https://github.com/YOUR-USERNAME?tab=repositories
+GitHub Help: https://docs.github.com
+Git tutorials: https://www.youtube.com/results?search_query=git+tutorial+for+beginners
+
+================================================================================
