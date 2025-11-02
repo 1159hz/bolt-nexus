@@ -4,7 +4,7 @@ const nextConfig = {
   
   // Environment variables exposed to the browser
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || '/api', // Use relative path for mock API
   },
   
   // Image optimization
@@ -14,6 +14,16 @@ const nextConfig = {
   
   // Output configuration for Netlify
   output: 'standalone',
+  
+  // Redirect API calls to mock service
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: '/api/mock/:path*',
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

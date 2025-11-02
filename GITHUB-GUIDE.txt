@@ -142,16 +142,61 @@ Step 3: Configure build
    → Base directory: frontend
    → Build command: npm run build
    → Publish directory: frontend/.next
-   → Click "Show advanced"
-   → Click "New variable"
-   → Key: NEXT_PUBLIC_API_URL
-   → Value: http://localhost:5000/api (change after backend is deployed)
+   → Look for "Environment variables" or "Build & deploy" or "Settings"
+   → Add new variable:
+      • Name: NEXT_PUBLIC_API_URL
+      • Value: http://localhost:5000/api (change after backend is deployed)
+   → Different places you might find this:
+      • "Site settings" > "Build & deploy" > "Environment"
+      • "Deploy settings" > "Environment variables"
+      • "Settings" > "Build & deploy" > "Environment"
+      • Look for buttons like "Add variable", "+ New variable", "Edit variables"
    → Click "Deploy site"
 
 Step 4: Wait for build
    → Watch the deploy log
    → When you see "Site is live", click the URL
    → Your site is online!
+
+
+PART 6: DEPLOY BACKEND TO RAILWAY
+---------------------------------
+
+Step 1: Create Railway account
+   → Go to: https://railway.app
+   → Click "Start a New Project"
+   → Connect with GitHub
+
+Step 2: Select repository
+   → Choose "bolt-nexus" repository
+   → Make sure it's the correct one
+
+Step 3: Configure service
+   → Root directory: backend
+   → Build command: pip install -r requirements.txt
+   → Start command: python main.py
+
+Step 4: Add environment variables
+   → SUPABASE_URL=https://fgbcjlklkochkjpwaupr.supabase.co
+   → SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnYmNqbGtsa29jaGtqcHdhdXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMDkzNTQsImV4cCI6MjA3NzU4NTM1NH0.CXuzIDdZbiVSneXEqO17PEmnobiU5t_PyK68oIu1i44
+   → RAZORPAY_KEY_ID=rzp_test_dummy
+   → RAZORPAY_KEY_SECRET=dummy_secret
+
+Step 5: Deploy
+   → Click "Deploy" or "Create Service"
+   → Wait 2-5 minutes
+   → Copy your Railway URL (e.g., https://bolt-nexus-production.up.railway.app)
+
+Step 6: Update Netlify variable
+   → Go back to Netlify site settings
+   → Change NEXT_PUBLIC_API_URL to your Railway URL + /api
+   → Example: https://bolt-nexus-production.up.railway.app/api
+   → Redeploy your site
+
+Step 7: Test live site
+   → Visit your Netlify URL
+   → Try the registration form
+   → Check if data saves to database
 
 
 TROUBLESHOOTING:

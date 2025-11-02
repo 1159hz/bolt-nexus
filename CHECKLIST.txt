@@ -45,11 +45,17 @@ STEP-BY-STEP CHECKLIST - Follow in order!
     → Sign up with GitHub
     → Click "New Project" → "Deploy from GitHub repo"
     → Select "bolt-nexus"
-    → Select "backend" folder
+    → Configure service:
+      • Root directory: backend
+      • Build command: pip install -r requirements.txt
+      • Start command: python main.py
     → Add environment variables:
       • SUPABASE_URL=https://fgbcjlklkochkjpwaupr.supabase.co
       • SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnYmNqbGtsa29jaGtqcHdhdXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMDkzNTQsImV4cCI6MjA3NzU4NTM1NH0.CXuzIDdZbiVSneXEqO17PEmnobiU5t_PyK68oIu1i44
+      • RAZORPAY_KEY_ID=rzp_test_dummy
+      • RAZORPAY_KEY_SECRET=dummy_secret
     → Click "Deploy"
+    → Wait for deployment to finish (2-5 minutes)
     → Copy the deployed URL (e.g., https://bolt-nexus-production.up.railway.app)
 
 [ ] STEP 8: Deploy Frontend to Netlify
@@ -62,10 +68,11 @@ STEP-BY-STEP CHECKLIST - Follow in order!
       • Base directory: frontend
       • Build command: npm run build
       • Publish directory: frontend/.next
-    → Add environment variable:
-      • NEXT_PUBLIC_API_URL = [Your Railway URL]/api
-        Example: https://bolt-nexus-production.up.railway.app/api
-    → Click "Deploy site"
+      • Environment variables (look for "Environment" or "Build & deploy"):
+        * Variable Name: NEXT_PUBLIC_API_URL
+        * Variable Value: [Your Railway URL]/api
+          Example: https://bolt-nexus-production.up.railway.app/api
+    → Click "Deploy site" or "Deploy" or "Save and deploy"
 
 [ ] STEP 9: Test Your Live Website
     → Wait for build to finish (2-3 minutes)

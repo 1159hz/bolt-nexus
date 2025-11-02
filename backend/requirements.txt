@@ -9,3 +9,6 @@ supabase==2.0.3
 
 # Python-dotenv - Load environment variables from .env file
 python-dotenv==1.0.0
+
+# Gunicorn - WSGI HTTP Server for UNIX and Windows
+gunicorn==21.2.0

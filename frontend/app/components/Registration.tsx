@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import axios from 'axios'
+import { mockApi } from '../services/mockApi'
 import { ArrowLeft, Zap, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react'
 import styles from './Registration.module.css'
 
@@ -86,18 +86,11 @@ export default function Registration({ onComplete, onBack }: RegistrationProps) 
     setLoading(true)
 
     try {
-      // Calculate probability first
-      calculateMaintenanceProbability()
-
-      // Send to backend
-      const response = await axios.post(`${API_URL}/register`, {
-        ...formData,
-        maintenance_probability: maintenanceProbability,
-        estimated_savings: estimatedSavings
-      })
+      // Use mock API instead of real backend
+      const response = await mockApi.register(formData)
 
       setTimeout(() => {
-        onComplete(response.data)
+        onComplete(response)
         setLoading(false)
       }, 2000)
     } catch (error: any) {

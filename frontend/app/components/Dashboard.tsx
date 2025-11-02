@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { mockApi } from '../services/mockApi'
 import { ArrowLeft, Calendar, Package, Clock, CheckCircle } from 'lucide-react'
 import styles from './Dashboard.module.css'
 
@@ -38,24 +38,40 @@ export default function Dashboard({ userId, onBack }: DashboardProps) {
   const [scheduledDate, setScheduledDate] = useState('')
 
   useEffect(() => {
-    fetchDashboardData()
+    // Use mock data instead of calling backend
+    const mockAppliances = [
+      {
+        id: 1,
+        appliance_type: 'Air Conditioner',
+        brand_model: 'Samsung 1.5 Ton',
+        health_score: 75,
+        energy_loss_per_month: 1200,
+        status: 'active'
+      },
+      {
+        id: 2,
+        appliance_type: 'Refrigerator',
+        brand_model: 'LG Double Door',
+        health_score: 85,
+        energy_loss_per_month: 450,
+        status: 'active'
+      }
+    ]
+    
+    const mockBookings = [
+      {
+        id: 1,
+        service_type: 'one_time',
+        scheduled_date: '2023-12-15',
+        status: 'confirmed',
+        service_amount: 799
+      }
+    ]
+    
+    setAppliances(mockAppliances)
+    setBookings(mockBookings)
+    setLoading(false)
   }, [userId])
-
-  const fetchDashboardData = async () => {
-    try {
-      const [appliancesRes, bookingsRes] = await Promise.all([
-        axios.get(`${API_URL}/appliances/${userId}`),
-        axios.get(`${API_URL}/bookings/${userId}`)
-      ])
-      
-      setAppliances(appliancesRes.data)
-      setBookings(bookingsRes.data)
-      setLoading(false)
-    } catch (error) {
-      console.error('Failed to fetch dashboard:', error)
-      setLoading(false)
-    }
-  }
 
   const handleBookService = async () => {
     if (!selectedAppliance || !scheduledDate) {
@@ -63,25 +79,21 @@ export default function Dashboard({ userId, onBack }: DashboardProps) {
       return
     }
 
-    try {
-      const response = await axios.post(`${API_URL}/bookings`, {
-        user_id: userId,
-        appliance_id: selectedAppliance,
-        service_type: serviceType,
-        scheduled_date: scheduledDate
-      })
-
-      // Simulate payment (in real app, integrate Razorpay here)
-      alert(`Booking created! Amount: ₹${response.data.amount}. Redirecting to payment...`)
-      
-      // Refresh data
-      fetchDashboardData()
-      setSelectedAppliance(null)
-      setScheduledDate('')
-    } catch (error) {
-      console.error('Booking failed:', error)
-      alert('Failed to create booking. Please try again.')
+    // Simulate booking creation
+    alert(`Booking created! Amount: ₹799. In a real application, this would redirect to payment...`)
+    
+    // Refresh data with mock booking
+    const newBooking = {
+      id: bookings.length + 1,
+      service_type: serviceType,
+      scheduled_date: scheduledDate,
+      status: 'confirmed',
+      service_amount: serviceType === 'amc' ? 999 : 799
     }
+    
+    setBookings([...bookings, newBooking])
+    setSelectedAppliance(null)
+    setScheduledDate('')
   }
 
   const getHealthColor = (score: number) => {

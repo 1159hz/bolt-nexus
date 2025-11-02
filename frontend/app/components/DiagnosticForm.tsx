@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import axios from 'axios'
+import { mockApi } from '../services/mockApi'
 import { ArrowLeft, Zap } from 'lucide-react'
 import styles from './DiagnosticForm.module.css'
 
@@ -41,8 +41,9 @@ export default function DiagnosticForm({ onComplete, onBack }: DiagnosticFormPro
     setLoading(true)
 
     try {
-      const response = await axios.post(`${API_URL}/diagnostic`, formData)
-      onComplete(response.data)
+      // Use mock API instead of real backend
+      const response = await mockApi.runDiagnostic(formData)
+      onComplete(response)
     } catch (error: any) {
       console.error('Diagnostic error:', error)
       alert('Failed to run diagnostic. Please try again.')

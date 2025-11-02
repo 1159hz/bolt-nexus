@@ -2,8 +2,27 @@
 BOLT NEXUS - NETLIFY DEPLOYMENT GUIDE
 ================================================================================
 
-STEP 1: PREPARE YOUR BACKEND
------------------------------
+STEP 1: FRONTEND-ONLY DEPLOYMENT (Recommended for quick demo)
+-------------------------------------------------------------
+To deploy only the frontend without backend:
+
+1. Go to https://netlify.com
+2. Click "Add new site" > "Import an existing project"
+3. Connect your Git repository
+4. Configure build settings:
+   - Base directory: frontend
+   - Build command: npm run build
+   - Publish directory: frontend/.next
+
+5. No environment variables needed for frontend-only deployment
+
+6. Click "Deploy site"
+
+This will deploy a fully functional frontend with mock data that simulates the backend functionality.
+
+
+STEP 2: FULL DEPLOYMENT WITH BACKEND
+------------------------------------
 Since Netlify is for frontend only, deploy your Flask backend separately:
 
 Option A: Railway (Recommended)
@@ -11,20 +30,26 @@ Option A: Railway (Recommended)
 2. Click "Start a New Project"
 3. Connect your GitHub repository
 4. Select the "backend" folder
-5. Add environment variables:
+5. Configure build settings:
+   - Root directory: backend
+   - Build command: pip install -r requirements.txt
+   - Start command: python main.py
+6. Add environment variables:
    - SUPABASE_URL=https://fgbcjlklkochkjpwaupr.supabase.co
-   - SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-   - RAZORPAY_KEY_ID=your_key
-   - RAZORPAY_KEY_SECRET=your_secret
-6. Deploy and copy the deployed URL (e.g., https://your-app.railway.app)
+   - SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnYmNqbGtsa29jaGtqcHdhdXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMDkzNTQsImV4cCI6MjA3NzU4NTM1NH0.CXuzIDdZbiVSneXEqO17PEmnobiU5t_PyK68oIu1i44
+   - RAZORPAY_KEY_ID=rzp_test_dummy
+   - RAZORPAY_KEY_SECRET=dummy_secret
+7. Deploy and copy the deployed URL (e.g., https://your-app.railway.app)
 
 Option B: Render
 1. Go to https://render.com
 2. Create a new "Web Service"
 3. Connect repository
-4. Build command: pip install -r requirements.txt
-5. Start command: python main.py
-6. Add environment variables (same as above)
+4. Set Root Directory: backend
+5. Build command: pip install -r requirements.txt
+6. Start command: gunicorn -c gunicorn.conf.py main:app
+7. Add environment variables (same as above)
+8. NOTE: The application will automatically use Render's PORT environment variable through gunicorn.conf.py
 
 Option C: PythonAnywhere
 1. Go to https://www.pythonanywhere.com
@@ -33,7 +58,7 @@ Option C: PythonAnywhere
 4. Set environment variables
 
 
-STEP 2: DEPLOY FRONTEND TO NETLIFY
+STEP 3: DEPLOY FRONTEND TO NETLIFY
 -----------------------------------
 1. Go to https://netlify.com
 2. Click "Add new site" > "Import an existing project"
@@ -46,14 +71,28 @@ STEP 2: DEPLOY FRONTEND TO NETLIFY
 5. Add environment variables in Netlify:
    Site Configuration > Environment Variables
    
-   NEXT_PUBLIC_API_URL=https://your-backend-url.railway.app/api
+   Variable Name: NEXT_PUBLIC_API_URL
+   Variable Value: https://your-backend-url.railway.app/api
    
    (Replace with your actual backend URL from Step 1)
+   
+   Different ways you might see this:
+   - "Environment variables" section
+   - "Build & deploy" > "Environment"
+   - "Settings" > "Build & deploy" > "Environment"
+   - Look for buttons like "Add variable", "+ New variable", or "Edit variables"
+   - Some sites show a simple form, others show a table
+   
+   If you can't find it, look for:
+   - "Site settings"
+   - "Configuration"
+   - "Build settings"
+   - "Deploy settings"
 
 6. Click "Deploy site"
 
 
-STEP 3: VERIFY DEPLOYMENT
+STEP 4: VERIFY DEPLOYMENT
 --------------------------
 1. Wait for build to complete
 2. Visit your Netlify URL
@@ -81,7 +120,7 @@ If you want frontend + serverless backend together:
 BACKEND URLs FOR DIFFERENT HOSTS:
 ----------------------------------
 Railway:     https://[app-name].railway.app/api
-Render:      https://[app-name].onrender.com/api
+Render:      https://[app-name].onrender.com
 Heroku:      https://[app-name].herokuapp.com/api
 Fly.io:      https://[app-name].fly.dev/api
 

@@ -55,18 +55,24 @@ git commit -m "Initial commit - Bolt Nexus Smart Appliance Platform"
 echo First commit created!
 
 echo.
+echo Step 6: Connecting to GitHub
+echo.
+echo Please follow these steps to connect to GitHub:
+echo 1. Go to https://github.com and log in
+echo 2. Click the + icon (top right) ^> New repository
+echo 3. Name it: bolt-nexus
+echo 4. Description: Smart Appliance Health Platform
+echo 5. Keep it PUBLIC (or choose Private)
+echo 6. DO NOT initialize with README
+echo 7. DO NOT choose a license
+echo 8. Click "Create repository"
+echo 9. Copy the repository URL (looks like https://github.com/yourusername/bolt-nexus.git)
+echo.
+echo After creating the repository, run: push-to-github.bat
+echo.
+
 echo ============================================
 echo SETUP COMPLETE!
 echo ============================================
 echo.
-echo Next steps:
-echo 1. Go to https://github.com
-echo 2. Click the + icon (top right) > New repository
-echo 3. Name it: bolt-nexus
-echo 4. Do NOT initialize with README
-echo 5. Click "Create repository"
-echo 6. Copy the repository URL
-echo 7. Run: push-to-github.bat
-echo.
-echo ============================================
 pause
