@@ -4,13 +4,8 @@ echo.
 
 cd /d D:\Jairus\Work\test\code
 
-echo Initializing git repository (if not already done)...
-git init
-echo.
-
-echo Setting remote origin...
-git remote remove origin 2>nul
-git remote add origin https://github.com/1159hz/bolt-nexus.git
+echo Checking current branch...
+git branch
 echo.
 
 echo Adding all files...
@@ -22,7 +17,7 @@ git commit -m "Initial commit: Adding all project files"
 echo.
 
 echo Pushing to GitHub...
-git push -u origin main
+git push -u origin master
 echo.
 
 echo Deployment complete!
