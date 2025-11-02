@@ -1,0 +1,396 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #004d40;
+  --card: #f4f6f8;
+  --card-foreground: #004d40;
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #00bfa5;
+  --primary-foreground: #ffffff;
+  --secondary: #004d40;
+  --secondary-foreground: #ffffff;
+  --muted: #e0f2f1;
+  --muted-foreground: #004d40;
+  --accent: #00bfa5;
+  --accent-foreground: #ffffff;
+  --destructive: #d32f2f;
+  --destructive-foreground: #ffffff;
+  --border: #e0f2f1;
+  --input: #f4f6f8;
+  --ring: #00bfa5;
+  --chart-1: #00bfa5;
+  --chart-2: #004d40;
+  --chart-3: #f4f6f8;
+  --chart-4: #009688;
+  --chart-5: #00897b;
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: #0f1419;
+  --foreground: #f4f6f8;
+  --card: #1a1f26;
+  --card-foreground: #f4f6f8;
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: #00bfa5;
+  --primary-foreground: #004d40;
+  --secondary: #f4f6f8;
+  --secondary-foreground: #004d40;
+  --muted: #263238;
+  --muted-foreground: #90a4ae;
+  --accent: #00bfa5;
+  --accent-foreground: #004d40;
+  --destructive: #ef5350;
+  --destructive-foreground: #ffffff;
+  --border: #263238;
+  --input: #1a1f26;
+  --ring: #00bfa5;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add custom animations */
+@layer utilities {
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  /* Added subtle idle animations for continuous background movement */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes floatSlow {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes subtleGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(0, 191, 165, 0);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(0, 191, 165, 0.15);
+    }
+  }
+
+  @keyframes gentleRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes shimmerIdle {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  /* Added slider-specific animations for better visual feedback */
+  @keyframes sliderThumbPulse {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(0, 191, 165, 0.7);
+    }
+    50% {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 6px rgba(0, 191, 165, 0.1);
+    }
+  }
+
+  @keyframes trackFill {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: var(--slider-value);
+    }
+  }
+
+  @keyframes sliderGlow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 2px rgba(0, 191, 165, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 8px rgba(0, 191, 165, 0.6));
+    }
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.5s ease-out;
+  }
+
+  .animate-slide-in-down {
+    animation: slideInDown 0.5s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  .animate-pulse-custom {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(to right, var(--card), var(--muted), var(--card));
+    background-size: 1000px 100%;
+  }
+
+  /* Idle animation utilities for continuous subtle effects */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: floatSlow 4s ease-in-out infinite;
+  }
+
+  .animate-subtle-glow {
+    animation: subtleGlow 3s ease-in-out infinite;
+  }
+
+  .animate-gentle-rotate {
+    animation: gentleRotate 6s linear infinite;
+  }
+
+  .animate-breathe {
+    animation: breathe 2.5s ease-in-out infinite;
+  }
+
+  .animate-slider-thumb-pulse {
+    animation: sliderThumbPulse 2s ease-in-out infinite;
+  }
+
+  .animate-slider-glow {
+    animation: sliderGlow 2s ease-in-out infinite;
+  }
+
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Custom slider input styling for better visibility and animations */
+  input[type="range"].slider-thumb-enhanced {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(to right, #e0f2f1, #00bfa5, #00bfa5, #e0f2f1);
+    outline: none;
+    border-radius: 10px;
+  }
+
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  input[type="range"].slider-thumb-enhanced::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    background: white;
+    border: 3px solid #00bfa5;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 191, 165, 0.4), 0 0 0 0 rgba(0, 191, 165, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  input[type="range"].slider-thumb-enhanced::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 191, 165, 0.6), 0 0 0 8px rgba(0, 191, 165, 0.15);
+  }
+
+  input[type="range"].slider-thumb-enhanced::-webkit-slider-thumb:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 191, 165, 0.8), 0 0 0 4px rgba(0, 191, 165, 0.2);
+  }
+
+  /* Firefox */
+  input[type="range"].slider-thumb-enhanced::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    background: white;
+    border: 3px solid #00bfa5;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 191, 165, 0.4), 0 0 0 0 rgba(0, 191, 165, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  input[type="range"].slider-thumb-enhanced::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 191, 165, 0.6), 0 0 0 8px rgba(0, 191, 165, 0.15);
+  }
+
+  input[type="range"].slider-thumb-enhanced::-moz-range-track {
+    background: transparent;
+    border: none;
+  }
+
+  input[type="range"].slider-thumb-enhanced::-moz-range-progress {
+    background: #00bfa5;
+    border-radius: 10px;
+  }
+}
