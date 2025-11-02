@@ -9,7 +9,7 @@ git init
 echo.
 
 echo Adding remote origin (if not already done)...
-git remote add origin https://github.com/1159hz/bolt-nexus.git
+git remote add origin https://github.com/1159hz/bolt-nexuses.git
 echo.
 
 echo Adding all files...
